@@ -1,42 +1,27 @@
-export class Book {
-    protected id: number;
-    protected title: string;
+import {LibraryItem} from "./LibraryItem";
+import {LibraryItemType} from "../enums/LibraryItemType";
+
+export class Book extends LibraryItem {
     protected author: string;
     protected isbn: string;
-    private isBorrowed: boolean;
 
-    constructor(id: number,title: string,author: string,isbn: string) {
-        this.id = id;
-        this.title = title;
+    constructor(id: number,title: string,author: string,isbn: string, ) {
+        super(id,title,LibraryItemType.Book);
         this.author = author;
         this.isbn = isbn;
-        this.isBorrowed = false
     }
 
-    public displayBookInfo(){
+    public displayInfo(): void {
         console.log(`
         Book - ID: ${this.id}
         Title: ${this.title}
         Author: ${this.author}
         ISBN: ${this.isbn}
-        IsAvailable: ${!this.isBorrowed}`);
+        Is Available: ${!this.isBorrowed}`);
     }
 
-    public getTitle(): string {
-        return this.title;
+    public borrow(): void {
+        super.borrow();
+        console.log(`The Book titled ${this.title} by ${this.author} was successfully borrowed..`);
     }
-
-    public borrowBook():void {
-        this.isBorrowed = true;
-    }
-
-    public isAvailable(): boolean {
-        return !this.isBorrowed;
-    }
-
-    public returnBook(): void {
-        this.isBorrowed = false;
-    }
-
-
 }
