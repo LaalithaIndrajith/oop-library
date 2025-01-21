@@ -1,4 +1,5 @@
 import {LibraryCatalogue} from "./LibraryCatalogue";
+import {LibraryItemType} from "../enums/LibraryItemType";
 
 export class User {
     private name: string;
@@ -25,27 +26,27 @@ export class User {
         this.email = email;
     }
 
-    public borrowBook(bookTitle: string):void {
-        const book = LibraryCatalogue.findBookByTitle(bookTitle);
-        if (book) {
-            if(book.isAvailable()){
-                book.borrowBook();
-                console.log(`${this.name} has successfully borrowed the book: "${bookTitle}".`);
+    public borrowItem(itemTitle: string, itemType:LibraryItemType):void {
+        const libraryItem = LibraryCatalogue.findItemByTitle(itemTitle,itemType);
+        if (libraryItem) {
+            if(libraryItem.isAvailable()){
+                libraryItem.borrow();
+                console.log(`${this.name} has successfully borrowed the ${itemType}: "${itemTitle}".`);
             }else{
-                console.log(`Sorry, The "${bookTitle}" is not available to borrow.`);
+                console.log(`Sorry, The ${itemType}: "${itemTitle}" is not available to borrow.`);
             }
         }else{
-            console.log(`The book titled "${bookTitle}" is not available in the catalogue.`);
+            console.log(`The ${itemType} titled "${itemTitle}" is not available in the catalogue.`);
         }
     }
 
-    public returnBook(bookTitle: string): void {
-        const book = LibraryCatalogue.findBookByTitle(bookTitle);
-        if (book) {
-            book.returnBook();
-            console.log(`${this.name} has successfully returned the book: "${bookTitle}".`);
+    public returnItem(itemTitle: string, itemType:LibraryItemType): void {
+        const libraryItem = LibraryCatalogue.findItemByTitle(itemTitle,itemType);
+        if (libraryItem) {
+            libraryItem.handover();
+            console.log(`${this.name} has successfully returned the ${itemType}: "${itemTitle}".`);
         }else{
-            console.log(`The book titled "${bookTitle}" is not available in the catalogue.`);
+            console.log(`The ${itemType} titled "${itemTitle}" is not available in the catalogue.`);
         }
     }
 }
