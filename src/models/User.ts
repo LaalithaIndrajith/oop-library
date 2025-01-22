@@ -27,7 +27,7 @@ export class User {
     }
 
     public borrowItem(itemTitle: string, itemType:LibraryItemType):void {
-        const libraryItem = LibraryCatalogue.findItemByTitle(itemTitle,itemType);
+        const libraryItem = LibraryCatalogue.getInstance().findItemByTitle(itemTitle,itemType);
         if (libraryItem) {
             if(libraryItem.isAvailable()){
                 libraryItem.borrow();
@@ -41,7 +41,7 @@ export class User {
     }
 
     public returnItem(itemTitle: string, itemType:LibraryItemType): void {
-        const libraryItem = LibraryCatalogue.findItemByTitle(itemTitle,itemType);
+        const libraryItem = LibraryCatalogue.getInstance().findItemByTitle(itemTitle,itemType);
         if (libraryItem) {
             libraryItem.handover();
             console.log(`${this.name} has successfully returned the ${itemType}: "${itemTitle}".`);
