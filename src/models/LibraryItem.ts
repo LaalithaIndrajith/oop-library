@@ -13,6 +13,10 @@ export abstract class LibraryItem{
         this.isBorrowed = false;
     }
 
+    /**
+     * Abstract method to display detailed information about the library item.
+     * Must be implemented by all subclasses to provide specific details about the item,
+     */
     abstract displayInfo():void
 
     public getTitle(): string{

@@ -11,6 +11,7 @@ export class AudioBook extends LibraryItem {
         this.length = length;
     }
 
+    // Displays detailed information about the Audiobook.
     displayInfo(): void {
         console.log(`
         Audio Book - ID: ${this.id}
