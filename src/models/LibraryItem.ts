@@ -1,6 +1,6 @@
 import {LibraryItemType} from "../enums/LibraryItemType";
 
-export abstract class LibraryItem{
+export abstract class LibraryItem implements Borrowable, Returnable{
     protected id: number;
     protected type: LibraryItemType;
     protected title: string;

@@ -1,0 +1,4 @@
+interface Returnable{
+
+    handover(): void;
+}

@@ -1,0 +1,4 @@
+interface Borrowable {
+
+    borrow(): void;
+}
